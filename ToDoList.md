@@ -12,4 +12,14 @@
 
 ## 17.12.2020
 
+*Sergo*
+
 - VK_parse: create base scheme of DB
+
+
+## 21.12.2020
+
+*Sergo*
+
+- VK_parse: update scheme of DB
+- VK_parse: add temporal sql
