@@ -32,8 +32,6 @@ def check_data(string):
 					return f"Образование        | {arr[1]}"
 				elif arr[0] == "Место учёбы":
 					return f"Место учёбы        | {arr[1]}"
-
-
 				elif arr[0] == "Сайт":
 					return f"Сайт               | {arr[1]}"
 				elif arr[0] == "Языки":
