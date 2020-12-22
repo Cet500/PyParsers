@@ -23,3 +23,12 @@
 
 - VK_parse: update scheme of DB
 - VK_parse: add temporal sql
+
+
+## 22.12.2020
+
+*Sergo*
+
+- create RGR_parse
+- create license
+- update readme
