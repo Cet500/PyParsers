@@ -1,3 +1,7 @@
 /.idea
-/VK_parse/.idea
 /RGR_parse/.idea
+/VK_parse/.idea
+/VK_parse/__pycache__/
+/VK_parse/config.py
+/VK_parse/data/
+/VK_parse/lib/__pycache__/
