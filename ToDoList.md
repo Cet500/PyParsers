@@ -32,3 +32,14 @@
 - create RGR_parse
 - create license
 - update readme
+
+
+## 10.01.2021
+
+*Sergo*
+
+- VK_parse: big update
+- VK_parse: fix parse
+- VK_parse: add types of data
+- VK_parse: add configs
+- VK_parse: move code by files
