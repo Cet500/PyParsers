@@ -1,57 +1,55 @@
-from bs4 import BeautifulSoup as bf
-import requests
-import datetime
-from lib.functions import check_data, check_counter, check_null, printer
 from config import *
 
 
-now = datetime.datetime.now()
+print("===========================================")
+print("              Start VK parse               ")
+print("===========================================")
+print("")
 
-file = open(f"data/data-{now.strftime('%Y-%m-%d')}.txt", "a")
-file.write( f"=================== {now.strftime('%H:%M:%S')} ===================\n\n" )
+print("- - - - - - - - - - - - - - - - - - - - - -")
+print("              configurations               ")
+print("- - - - - - - - - - - - - - - - - - - - - -")
+print("")
 
-for i in range(conf_sc_start):
-	base = "https://vk.com/id"
-	link = base + str(conf_sc_amount + i)
+print("scanner parameters")
+print(f"  | start:  {conf_sc_start}")
+print(f"  | amount: {conf_sc_amount}")
+print("")
 
-	markup = requests.get(link)
+print("data parameters")
+print(f"  | use log:  {conf_fn_log}")
+print(f"  | use file: {conf_fn_file}")
+print(f"  | use db:   {conf_fn_db}")
+print("")
 
-	soup = bf( markup.text, "lxml" )
+if conf_fn_file:
+	print("file parameters")
+	print(f"  | file dir:     {conf_fl_dir}")
+	print(f"  | file group:   {conf_fl_group}")
+	print(f"  | file format:  {conf_fl_format}")
+	print("")
 
-	printer( "ID", f"{link}", file )
+if conf_fn_db:
+	print("database parameters")
+	print(f"  | db type:  {conf_db_type}")
+	print(f"  | db host:  {conf_db_host}")
+	print(f"  | db user:  {conf_db_user}")
+	print(f"  | db pass:  {conf_db_pass}")
+	print(f"  | db name:  {conf_db_database}")
+	print("")
 
-	if soup.select_one(".message_page_body"):
-		printer( "Фамилия и имя", "ХЗ", file )
-		printer( "Доступность", "Не существует", file )
+if conf_check:
+	answer = input("Config is correct? ( y/n ): ")
 
-	elif soup.select_one("#login_blocked_img"):
-		printer( "Фамилия и имя", "ХЗ", file )
-		printer( "Доступность", "Заблокирован", file )
-
-	elif soup.select_one("#page_current_info"):
-		if soup.select_one("#page_current_info").text == "Страница скрыта":
-			printer( "Фамилия и имя", f"{soup.select_one('.page_name').text}", file )
-			printer( "Доступность", "Скрыта", file )
-
+	if ( answer.lower() == "y" ):
+		print()
+	elif ( answer.lower() == "n" ):
+		exit(0)
 	else:
-		printer("Фамилия и имя", f"{soup.select_one('.page_name').text.rstrip()}", file)
-		printer("Доступность", "Открыта", file)
-		printer("Время входа", f"{check_null(soup.select_one('.profile_online_lv').text)}", file)
+		print("error: false input")
+		exit(-1)
 
-		data = soup.select(".profile_info_row")
-
-		for dat in data:
-			info = check_data(dat.text)
-			if info != "NULL":
-				printer( info[0], info[1], file )
-
-		counters = soup.select(".page_counter")
-
-		for counter in counters:
-			count = check_counter(counter)
-			if count != "NULL":
-				printer( count[0], count[1], file )
-
-	printer( "void", "void", file )
-
-file.close()
+print("===========================================")
+print("              Work VK parse                ")
+print("===========================================")
+print("")

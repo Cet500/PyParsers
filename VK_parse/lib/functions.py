@@ -26,6 +26,9 @@ def check_data(string):
 				string = string.strip()
 				arr = string.split(':\n')
 
+				if len(arr) == 1:
+					return "NULL"
+
 				if arr[0] == "День рождения":
 					return "День рождения", f"{arr[1]}"
 				elif arr[0] == "Город":
@@ -185,9 +188,6 @@ def check_counter(counter):
 
 
 def printer( key, value, file ):
-	if conf_fn_db:
-		pass
-
 	if conf_fn_file:
 		if key == "void":
 			file.write( "\n" )
